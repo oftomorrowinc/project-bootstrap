@@ -8,6 +8,7 @@
     "project-bootstrap": "./src/bootstrap.js"
   },
   "scripts": {
+    "release": "git add . && git commit -m \"Release v$npm_package_version\" && git tag -a v$npm_package_version -m \"Release v$npm_package_version\" && git push && git push --tags",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
