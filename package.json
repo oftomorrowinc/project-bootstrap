@@ -1,6 +1,6 @@
 {
   "name": "project-bootstrap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Dockerfile-like project bootstrapping tool",
   "type": "module",
   "main": "src/bootstrap.js",
@@ -9,6 +9,7 @@
   },
   "scripts": {
     "release": "git add . && git commit -m \"Release v$npm_package_version\" && git tag -a v$npm_package_version -m \"Release v$npm_package_version\" && git push && git push --tags",
+    "curl": "node files/curl.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },

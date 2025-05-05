@@ -66,8 +66,8 @@ program
     fs.copyFileSync(sourceFile, destFile);
     console.log(chalk.green(`Template '${templateName}' initialized! Copied projectfile.yml to current directory.`));
     console.log(chalk.blue('Next steps:'));
-    console.log('1. Customize the projectfile.yml if needed');
-    console.log('2. Run "npx project-bootstrap run" to execute the setup');
+    console.log('1. Update the project name and other changes (if needed) in projectfile.yml');
+    console.log('2. Run "npx github:oftomorrowinc/project-bootstrap run" to execute the setup');
   });
 
 // Run command - executes the local projectfile.yml

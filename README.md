@@ -36,9 +36,10 @@ Project Bootstrap allows you to define your project structure, dependencies, and
 ```bash
 # List available templates
 npx project-bootstrap init --list
+npx github:oftomorrowinc/project-bootstrap init --list
 
 # Initialize a project with a specific template
-npx project-bootstrap init node-app
+npx github:oftomorrowinc/project-bootstrap init node-app
 ```
 
 This will copy the template's `projectfile.yml` to your current directory, which you can then customize for your specific project.
@@ -50,7 +51,7 @@ Edit the `projectfile.yml` file to adjust packages, files, directories, or comma
 ### Run the Bootstrap Process
 
 ```bash
-npx project-bootstrap run
+npx github:oftomorrowinc/project-bootstrap run
 ```
 
 This will execute the instructions in your `projectfile.yml` to set up your project.
@@ -136,6 +137,14 @@ npm run curl --help
 - **Onboarding**: Make it easier for new team members to understand your setup
 - **Best Practices**: Encode your team's best practices into shareable templates
 - **Evolution**: Evolve your templates over time as your practices improve
+
+## Publishing a Release
+1. Increment the version number in package.json
+2. Update this Readme with correct version
+3. Run `npm run release` to create a tag on Github
+4. Visit https://github.com/oftomorrowinc/project-bootstrap/releases/new
+5. Choose your new tag, enter a title & description of the updates and click PUblish release
+
 
 ## License
 
