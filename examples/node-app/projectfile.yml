@@ -1,0 +1,84 @@
+name: node-app
+description: Node.js application with Express, Pug, HTMX, TypeScript, Firebase, and testing
+directories:
+  - dist
+  - src/controllers
+  - src/models
+  - src/middleware
+  - src/utils
+  - src/views
+  - src/public/css
+  - src/public/js
+  - src/public/images
+  - tests/unit
+  - tests/e2e
+  - scripts
+files:
+  index.ts: src/index.ts
+  app.ts: src/app.ts
+  layout.pug: src/views/layout.pug
+  index.pug: src/views/index.pug
+  styles.css: src/public/css/styles.css
+  main.js: src/public/js/main.js
+  app.test.ts: tests/unit/app.test.ts
+  home.spec.ts: tests/e2e/home.spec.ts
+  .eslintrc.js: .eslintrc.js
+  .firebaserc: .firebaserc
+  .gitignore: .gitignore
+  .prettierrc: .prettierrc
+  jest.config.js: jest.config.js
+  playwright.config.ts: playwright.config.ts
+  tsconfig.json: tsconfig.json
+  firebase.json: firebase.json
+  curl.js: scripts/curl.js
+  CLAUDE.md: CLAUDE.md
+package:
+  type: module
+  main: dist/index.js
+  scripts:
+    start: node dist/index.js
+    dev: nodemon --exec tsx src/index.ts
+    build: tsc
+    typecheck: tsc --noEmit
+    lint: eslint . --ext .ts
+    format: prettier --write .
+    test: node --experimental-vm-modules node_modules/jest/bin/jest.js
+    test:e2e: playwright test
+    emulator: firebase emulators:start
+    curl: node scripts/curl.js
+  dependencies:
+    express: latest
+    pug: latest
+    htmx.org: latest
+    firebase-admin: latest
+    firebase: latest
+    dotenv: latest
+    compression: latest
+    helmet: latest
+    cors: latest
+  devDependencies:
+    typescript: latest
+    '@types/node': latest
+    '@types/express': latest
+    '@types/jest': latest
+    tsx: latest
+    nodemon: latest
+    jest: latest
+    ts-jest: latest
+    '@playwright/test': latest
+    eslint: latest
+    '@typescript-eslint/eslint-plugin': latest
+    '@typescript-eslint/parser': latest
+    prettier: latest
+    eslint-config-prettier: latest
+    eslint-plugin-prettier: latest
+    eslint-plugin-playwright: latest
+    firebase-tools: latest
+    axios: latest
+    commander: latest
+commands:
+  - npm init -y
+  - npm i {{dependencies}}
+  - npm i -D {{devDependencies}}
+  - chmod +x scripts/curl.js
+  - npm run format

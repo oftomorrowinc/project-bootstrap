@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  section.container
+    h2 Welcome to your new application!
+    p This project was bootstrapped with Project Bootstrap.
+    
+    div(hx-get="/api/time" hx-trigger="load" hx-swap="innerHTML")
+      p Loading server time...
