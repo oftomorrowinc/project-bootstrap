@@ -47,35 +47,39 @@ package:
     emulator: firebase emulators:start
     curl: node scripts/curl.js
   dependencies:
-    express: latest
-    pug: latest
-    htmx.org: latest
-    firebase-admin: latest
-    firebase: latest
-    dotenv: latest
-    compression: latest
-    helmet: latest
     cors: latest
+    compression: latest
+    dotenv: latest
+    express: latest
+    firebase: latest
+    firebase-admin: latest
+    helmet: latest
+    htmx.org: latest
+    pug: latest
   devDependencies:
-    typescript: latest
-    '@types/node': latest
+    '@playwright/test': latest
+    '@types/compression': latest
+    '@types/cors': latest
     '@types/express': latest
     '@types/jest': latest
-    tsx: latest
-    nodemon: latest
-    jest: latest
-    ts-jest: latest
-    '@playwright/test': latest
-    eslint: latest
+    '@types/node': latest
+    '@types/supertest': latest
     '@typescript-eslint/eslint-plugin': latest
     '@typescript-eslint/parser': latest
-    prettier: latest
+    axios: latest
+    commander: latest
+    eslint: latest
     eslint-config-prettier: latest
     eslint-plugin-prettier: latest
     eslint-plugin-playwright: latest
     firebase-tools: latest
-    axios: latest
-    commander: latest
+    jest: latest
+    nodemon: latest
+    prettier: latest
+    supertest: latest
+    ts-jest: latest
+    tsx: latest
+    typescript: latest
 commands:
   - npm init -y
   - npm i {{dependencies}}
