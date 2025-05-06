@@ -5,15 +5,16 @@ A flexible, Dockerfile-inspired project scaffolding tool that helps you quickly 
 ## Quick Start
 
 ```bash
-# Install globally (optional)
-npm install -g project-bootstrap
-
-# Or run directly with npx
-npx project-bootstrap init node-app
-npx project-bootstrap run
+mkdir new-project && cd new-project
 
 # List available templates
-npx project-bootstrap init --list
+npx github:oftomorrowinc/project-bootstrap init --list
+
+# Download `projectfile.yml` template and update the name & anything else you want to change
+npx github:oftomorrowinc/project-bootstrap init node-app
+
+# Execute the template to bootstrap your project
+npx github:oftomorrowinc/project-bootstrap run
 ```
 
 ## Overview
@@ -29,32 +30,6 @@ Project Bootstrap allows you to define your project structure, dependencies, and
 - **Reproducible**: Ensure consistent project setup across your team
 - **No Installation Required**: Run directly with npx from GitHub
 
-## Getting Started
-
-### Initialize a Project with a Template
-
-```bash
-# List available templates
-npx project-bootstrap init --list
-npx github:oftomorrowinc/project-bootstrap init --list
-
-# Initialize a project with a specific template
-npx github:oftomorrowinc/project-bootstrap init node-app
-```
-
-This will copy the template's `projectfile.yml` to your current directory, which you can then customize for your specific project.
-
-### Customize the Configuration
-
-Edit the `projectfile.yml` file to adjust packages, files, directories, or commands for your specific project needs.
-
-### Run the Bootstrap Process
-
-```bash
-npx github:oftomorrowinc/project-bootstrap run
-```
-
-This will execute the instructions in your `projectfile.yml` to set up your project.
 
 ## Project File Format
 
