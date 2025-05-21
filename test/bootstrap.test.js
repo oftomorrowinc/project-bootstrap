@@ -23,19 +23,19 @@ function runBootstrap(templateDir) {
     const projectfilePath = path.join(templateDir, 'projectfile.yml');
     const projectfileContent = fs.readFileSync(projectfilePath, 'utf8');
     const config = yaml.load(projectfileContent);
-    
+
     // Remove any git commands from the commands array
     if (config.commands) {
-      config.commands = config.commands.filter(cmd => !cmd.includes('git init'));
+      config.commands = config.commands.filter((cmd) => !cmd.includes('git init'));
     }
-    
+
     // Write the modified projectfile back
     fs.writeFileSync(projectfilePath, yaml.dump(config), 'utf8');
-    
+
     // Use the actual bootstrap.js script
-    execSync(`node ${bootstrapScript} run`, { 
+    execSync(`node ${bootstrapScript} run`, {
       cwd: templateDir,
-      stdio: 'inherit' 
+      stdio: 'inherit',
     });
     return true;
   } catch (error) {
@@ -48,7 +48,7 @@ function runBootstrap(templateDir) {
 function cleanDirectory(dir) {
   if (fs.existsSync(dir)) {
     // Remove all files and subdirectories
-    fs.readdirSync(dir, { withFileTypes: true }).forEach(dirent => {
+    fs.readdirSync(dir, { withFileTypes: true }).forEach((dirent) => {
       const fullPath = path.join(dir, dirent.name);
       if (dirent.isDirectory()) {
         fs.removeSync(fullPath);
@@ -66,16 +66,17 @@ function isDirectoryEmpty(dir) {
   if (!fs.existsSync(dir)) {
     return true;
   }
-  
+
   const files = fs.readdirSync(dir, { withFileTypes: true });
   return files.length === 0;
 }
 
 describe('Project Bootstrap', () => {
   // Get all templates
-  const templates = fs.readdirSync(templatesDir)
-    .filter(file => fs.statSync(path.join(templatesDir, file)).isDirectory());
-  
+  const templates = fs
+    .readdirSync(templatesDir)
+    .filter((file) => fs.statSync(path.join(templatesDir, file)).isDirectory());
+
   // Clear out entire examples directory before all tests
   beforeAll(() => {
     console.log('Cleaning examples directory...');
@@ -85,60 +86,60 @@ describe('Project Bootstrap', () => {
       fs.mkdirpSync(examplesDir);
     }
   });
-  
+
   // Test each template
-  templates.forEach(templateName => {
+  templates.forEach((templateName) => {
     describe(`Template: ${templateName}`, () => {
       const templateDir = path.join(templatesDir, templateName);
       const exampleDir = path.join(examplesDir, templateName);
       const projectfileYml = path.join(templateDir, 'projectfile.yml');
-      
+
       // Clear and set up the example directory before each test suite
       beforeAll(() => {
         console.log(`Setting up clean example for ${templateName}...`);
-        
+
         // Clear any existing example including hidden files/folders
         if (fs.existsSync(exampleDir)) {
           cleanDirectory(exampleDir);
         } else {
           fs.mkdirpSync(exampleDir);
         }
-        
+
         // Copy template's projectfile.yml to example directory
         fs.copyFileSync(projectfileYml, path.join(exampleDir, 'projectfile.yml'));
       });
-      
+
       test('Example directory is empty before running bootstrap', () => {
         // The directory should only contain the projectfile.yml at this point
         const files = fs.readdirSync(exampleDir);
         expect(files.length).toBe(1);
         expect(files[0]).toBe('projectfile.yml');
       });
-      
+
       test('Bootstrap runs successfully', () => {
         const success = runBootstrap(exampleDir);
         expect(success).toBe(true);
       });
-      
+
       test('Creates all directories specified in projectfile.yml', () => {
         const yamlContent = fs.readFileSync(projectfileYml, 'utf8');
         const config = yaml.load(yamlContent);
-        
+
         if (config.directories) {
-          config.directories.forEach(dir => {
+          config.directories.forEach((dir) => {
             const dirPath = path.join(exampleDir, dir);
             expect(fs.existsSync(dirPath)).toBe(true);
           });
         }
       });
-      
+
       test('Validates that all source files exist in /files directory', () => {
         const yamlContent = fs.readFileSync(projectfileYml, 'utf8');
         const config = yaml.load(yamlContent);
-        
+
         if (config.files) {
           const missingFiles = [];
-          
+
           Object.entries(config.files).forEach(([filename, dest]) => {
             if (typeof dest === 'string') {
               const sourceFilePath = path.join(filesDir, filename);
@@ -147,23 +148,23 @@ describe('Project Bootstrap', () => {
               }
             }
           });
-          
+
           if (missingFiles.length > 0) {
             console.error('Missing files in /files directory:');
-            missingFiles.forEach(file => console.error(`  - ${file}`));
+            missingFiles.forEach((file) => console.error(`  - ${file}`));
           }
-          
+
           expect(missingFiles.length).toBe(0);
         }
       });
-      
+
       test('Creates all files specified in projectfile.yml', () => {
         const yamlContent = fs.readFileSync(projectfileYml, 'utf8');
         const config = yaml.load(yamlContent);
-        
+
         if (config.files) {
           const missingDestFiles = [];
-          
+
           Object.entries(config.files).forEach(([filename, dest]) => {
             // Check if file was created at destination
             if (typeof dest === 'string') {
@@ -173,31 +174,31 @@ describe('Project Bootstrap', () => {
               }
             }
           });
-          
+
           if (missingDestFiles.length > 0) {
             console.error('Files not created at destination:');
-            missingDestFiles.forEach(file => console.error(`  - ${file}`));
+            missingDestFiles.forEach((file) => console.error(`  - ${file}`));
           }
-          
+
           expect(missingDestFiles.length).toBe(0);
         }
       });
-      
+
       test('package.json contains correct scripts and type', () => {
         const yamlContent = fs.readFileSync(projectfileYml, 'utf8');
         const config = yaml.load(yamlContent);
         const packageJsonPath = path.join(exampleDir, 'package.json');
-        
+
         if (fs.existsSync(packageJsonPath)) {
           const packageJson = fs.readJsonSync(packageJsonPath);
-          
+
           // Check if package is defined in projectfile.yml
           if (config.package) {
             // Check type
             if (config.package.type) {
               expect(packageJson.type).toBe(config.package.type);
             }
-            
+
             // Check scripts
             if (config.package.scripts) {
               Object.entries(config.package.scripts).forEach(([scriptName, scriptCmd]) => {
@@ -207,7 +208,7 @@ describe('Project Bootstrap', () => {
           }
         }
       });
-      
+
       // Test for node-app specific files
       if (templateName === 'node-app') {
         test('curl.js script exists and is executable', () => {
@@ -220,16 +221,20 @@ describe('Project Bootstrap', () => {
           } else {
             // If curl.js doesn't exist, fail the test and provide helpful error
             console.error(`curl.js not found at ${curlPath}`);
-            console.error('Check that "curl.js" exists in your /files directory and is being copied correctly');
+            console.error(
+              'Check that "curl.js" exists in your /files directory and is being copied correctly'
+            );
             expect(fs.existsSync(curlPath)).toBe(true);
           }
         });
-        
+
         test('CLAUDE.md file exists', () => {
           const claudeMdPath = path.join(exampleDir, 'CLAUDE.md');
           if (!fs.existsSync(claudeMdPath)) {
             console.error(`CLAUDE.md not found at ${claudeMdPath}`);
-            console.error('Check that "CLAUDE.md" exists in your /files directory and is being copied correctly');
+            console.error(
+              'Check that "CLAUDE.md" exists in your /files directory and is being copied correctly'
+            );
           }
           expect(fs.existsSync(claudeMdPath)).toBe(true);
         });

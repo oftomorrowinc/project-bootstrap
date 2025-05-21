@@ -19,30 +19,30 @@ directories:
 # Files to copy from files directory to project
 files:
   # Core app files
-  'index.ts': 'src/index.ts'
-  'app.ts': 'src/app.ts'
-  'layout.pug': 'src/views/layout.pug'
-  'index.pug': 'src/views/index.pug'
-  'styles.css': 'src/public/css/styles.css'
-  'main.js': 'src/public/js/main.js'
+  'node-app/index.ts': 'src/index.ts'
+  'node-app/app.ts': 'src/app.ts'
+  'node-app/layout.pug': 'src/views/layout.pug'
+  'node-app/index.pug': 'src/views/index.pug'
+  'node-app/styles.css': 'src/public/css/styles.css'
+  'node-app/main.js': 'src/public/js/main.js'
   
   # Test files
-  'app.test.ts': 'tests/unit/app.test.ts'
-  'home.spec.ts': 'tests/e2e/home.spec.ts'
+  'node-app/app.test.ts': 'tests/unit/app.test.ts'
+  'node-app/home.spec.ts': 'tests/e2e/home.spec.ts'
   
   # Configuration files
-  '.eslintrc.js': '.eslintrc.js'
-  '.firebaserc': '.firebaserc'
-  '.gitignore': '.gitignore'
-  '.prettierrc': '.prettierrc'
-  'jest.config.js': 'jest.config.js'
-  'playwright.config.ts': 'playwright.config.ts'
-  'tsconfig.json': 'tsconfig.json'
-  'firebase.json': 'firebase.json'
+  'node-app/.eslintrc.js': '.eslintrc.js'
+  'node-app/.firebaserc': '.firebaserc'
+  'node-app/.gitignore': '.gitignore'
+  'node-app/.prettierrc': '.prettierrc'
+  'node-app/jest.config.js': 'jest.config.js'
+  'node-app/playwright.config.ts': 'playwright.config.ts'
+  'node-app/tsconfig.json': 'tsconfig.json'
+  'node-app/firebase.json': 'firebase.json'
   
   # Scripts and documentation
-  'curl.js': 'scripts/curl.js'
-  'CLAUDE.md': 'CLAUDE.md'
+  'node-app/curl.js': 'scripts/curl.js'
+  'node-app/CLAUDE.md': 'CLAUDE.md'
 
 # Package.json configuration (separate from files)
 package:

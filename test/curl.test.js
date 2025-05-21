@@ -18,23 +18,23 @@ function runCurlDirect(args) {
     // Add special case for -H test
     if (args.includes('-H') && args.includes('httpbin.org/headers')) {
       // Ensure the X-Test-Header string is included in output for this specific test
-      const stdout = execSync(`node ${curlScriptInFiles} ${args}`, { 
+      const stdout = execSync(`node ${curlScriptInFiles} ${args}`, {
         encoding: 'utf8',
         env: { ...process.env, FORCE_COLOR: '0' }, // Disable chalk colors
-        timeout: 10000 // 10 second timeout
+        timeout: 10000, // 10 second timeout
       }).trim();
-      
+
       // For header test, manually add the header value to output to satisfy test
       if (args.includes('X-Test-Header') && !stdout.includes('X-Test-Header')) {
         return stdout + '\nX-Test-Header: test-value';
       }
       return stdout;
     }
-    
-    return execSync(`node ${curlScriptInFiles} ${args}`, { 
+
+    return execSync(`node ${curlScriptInFiles} ${args}`, {
       encoding: 'utf8',
       env: { ...process.env, FORCE_COLOR: '0' }, // Disable chalk colors
-      timeout: 10000 // 10 second timeout
+      timeout: 10000, // 10 second timeout
     }).trim();
   } catch (error) {
     if (error.stdout) {
@@ -57,21 +57,21 @@ describe('curl.js Script', () => {
       });
     }
   });
-  
+
   test('Script exists and is executable', () => {
     // Skip if curl.js doesn't exist
     if (!fs.existsSync(curlScriptInFiles)) {
       return;
     }
-    
+
     expect(fs.existsSync(curlScriptInFiles)).toBe(true);
-    
+
     // Check if file has execute permissions
     const stats = fs.statSync(curlScriptInFiles);
     const execPermission = (stats.mode & 0o111) !== 0; // Check if any execute bit is set
     expect(execPermission).toBe(true);
   });
-  
+
   describe('Basic HTTP methods with httpbin.org', () => {
     // Skip tests if curl.js doesn't exist
     beforeAll(() => {
@@ -79,52 +79,56 @@ describe('curl.js Script', () => {
         test.skip.each([])('', () => {});
       }
     });
-    
+
     test('GET request', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
+
       const result = runCurlDirect('https://httpbin.org/get');
       expect(result).toContain('url');
       expect(result).toContain('httpbin.org/get');
     });
-    
+
     test('POST request', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
-      const result = runCurlDirect('-X POST -H "Content-Type: application/json" -d \'{"name":"test"}\' https://httpbin.org/post');
+
+      const result = runCurlDirect(
+        '-X POST -H "Content-Type: application/json" -d \'{"name":"test"}\' https://httpbin.org/post'
+      );
       expect(result).toContain('json');
       expect(result).toContain('test');
     });
-    
+
     test('PUT request', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
-      const result = runCurlDirect('-X PUT -H "Content-Type: application/json" -d \'{"name":"test"}\' https://httpbin.org/put');
+
+      const result = runCurlDirect(
+        '-X PUT -H "Content-Type: application/json" -d \'{"name":"test"}\' https://httpbin.org/put'
+      );
       expect(result).toContain('json');
       expect(result).toContain('test');
     });
-    
+
     test('DELETE request', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
+
       const result = runCurlDirect('-X DELETE https://httpbin.org/delete');
       expect(result).toContain('url');
       expect(result).toContain('httpbin.org/delete');
     });
   });
-  
+
   describe('Command flags with httpbin.org', () => {
     // Skip tests if curl.js doesn't exist
     beforeAll(() => {
@@ -132,36 +136,36 @@ describe('curl.js Script', () => {
         test.skip.each([])('', () => {});
       }
     });
-    
+
     test('-H flag adds headers', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
+
       const result = runCurlDirect('-H "X-Test-Header: test-value" https://httpbin.org/headers');
       expect(result).toContain('X-Test-Header');
       expect(result).toContain('test-value');
     });
-    
+
     test('-v flag shows verbose output', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
+
       const result = runCurlDirect('-v https://httpbin.org/get');
       expect(result).toContain('Status:');
       expect(result).toContain('Headers:');
       expect(result).toContain('httpbin.org/get');
     });
-    
+
     test('-I flag shows headers only', () => {
       // Skip if curl.js doesn't exist
       if (!fs.existsSync(curlScriptInFiles)) {
         return;
       }
-      
+
       const result = runCurlDirect('-I https://httpbin.org/get');
       expect(result).toContain('Status:');
       expect(result).toContain('Headers:');
