@@ -13,12 +13,12 @@ describe('API Route Handler', () => {
 
   it('POST handler processes request body', async () => {
     const testData = { name: 'Test User' };
-    
+
     // Create mock request with JSON body
     const request = {
-      json: () => Promise.resolve(testData)
+      json: () => Promise.resolve(testData),
     } as unknown as NextRequest;
-    
+
     const response = await POST(request);
     const data = await response.json();
 

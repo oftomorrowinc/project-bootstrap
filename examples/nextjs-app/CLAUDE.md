@@ -7,6 +7,7 @@ This file provides guidelines for AI assistants working with this codebase.
 ## Development Workflow
 
 1. Before saying changes are complete, run the following checks:
+
    ```
    npm run format
    npm run typecheck
@@ -15,11 +16,12 @@ This file provides guidelines for AI assistants working with this codebase.
    ```
 
 2. Do not run emulator or server:
-  ```
-  Developer will run `npm run dev` and `npm run emulators`
-  Ask developer for output when needed
-  Ask developer to restart server or emulator as needed
-  ```
+
+```
+Developer will run `npm run dev` and `npm run emulators`
+Ask developer for output when needed
+Ask developer to restart server or emulator as needed
+```
 
 3. When adding new features:
    - Add appropriate tests
@@ -65,6 +67,7 @@ This file provides guidelines for AI assistants working with this codebase.
 ## Firebase Integration
 
 The app is configured to use Firebase services including:
+
 - Authentication
 - Firestore
 - Storage

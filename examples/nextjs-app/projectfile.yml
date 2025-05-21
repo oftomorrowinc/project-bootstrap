@@ -1,7 +1,7 @@
 name: nextjs-app
-description: >-
-  Next.js application with TypeScript, Firebase App Hosting, Dark Theme, and
-  testing
+description: Next.js application with TypeScript, Firebase App Hosting, Dark Theme, and testing
+
+# Directories to create
 directories:
   - public
   - src/app
@@ -14,90 +14,103 @@ directories:
   - tests/e2e
   - scripts
   - .husky
+
+# Files to copy from files directory to project
 files:
-  nextjs-app/layout.tsx: src/app/layout.tsx
-  nextjs-app/page.tsx: src/app/page.tsx
-  nextjs-app/globals.css: src/app/globals.css
-  nextjs-app/route.ts: src/app/api/hello/route.ts
-  nextjs-app/ThemeToggle.tsx: src/components/ThemeToggle.tsx
-  nextjs-app/ThemeProvider.tsx: src/components/ThemeProvider.tsx
-  nextjs-app/firebase.ts: src/lib/firebase.ts
-  nextjs-app/favicon.ico: public/favicon.ico
-  nextjs-app/theme.test.tsx: tests/unit/theme.test.tsx
-  nextjs-app/page.test.tsx: tests/unit/page.test.tsx
-  nextjs-app/api.test.ts: tests/unit/api.test.ts
-  nextjs-app/home.spec.ts: tests/e2e/home.spec.ts
-  nextjs-app/.eslintrc.json: .eslintrc.json
-  nextjs-app/.firebaserc: .firebaserc
-  nextjs-app/.gitignore: .gitignore
-  nextjs-app/.prettierrc: .prettierrc
-  nextjs-app/jest.config.js: jest.config.js
-  nextjs-app/jest.setup.js: jest.setup.js
-  nextjs-app/playwright.config.ts: playwright.config.ts
-  nextjs-app/tsconfig.json: tsconfig.json
-  nextjs-app/firebase.json: firebase.json
-  nextjs-app/firestore.rules: firestore.rules
-  nextjs-app/firestore.indexes.json: firestore.indexes.json
-  nextjs-app/storage.rules: storage.rules
-  nextjs-app/next.config.js: next.config.js
-  nextjs-app/tailwind.config.js: tailwind.config.js
-  nextjs-app/lint-staged.config.js: lint-staged.config.js
-  nextjs-app/deploy.js: scripts/deploy.js
-  nextjs-app/CLAUDE.md: CLAUDE.md
+  # Core app files (flat structure in files directory)
+  'nextjs-app/layout.tsx': 'src/app/layout.tsx'
+  'nextjs-app/page.tsx': 'src/app/page.tsx'
+  'nextjs-app/globals.css': 'src/app/globals.css'
+  'nextjs-app/route.ts': 'src/app/api/hello/route.ts'
+  'nextjs-app/ThemeToggle.tsx': 'src/components/ThemeToggle.tsx'
+  'nextjs-app/ThemeProvider.tsx': 'src/components/ThemeProvider.tsx'
+  'nextjs-app/firebase.ts': 'src/lib/firebase.ts'
+  'nextjs-app/favicon.ico': 'public/favicon.ico'
+
+  # Test files
+  'nextjs-app/theme.test.tsx': 'tests/unit/theme.test.tsx'
+  'nextjs-app/page.test.tsx': 'tests/unit/page.test.tsx'
+  'nextjs-app/api.test.ts': 'tests/unit/api.test.ts'
+  'nextjs-app/home.spec.ts': 'tests/e2e/home.spec.ts'
+
+  # Configuration files
+  'nextjs-app/.eslintrc.json': '.eslintrc.json'
+  'nextjs-app/.firebaserc': '.firebaserc'
+  'nextjs-app/.gitignore': '.gitignore'
+  'nextjs-app/.prettierrc': '.prettierrc'
+  'nextjs-app/jest.config.js': 'jest.config.js'
+  'nextjs-app/jest.setup.js': 'jest.setup.js'
+  'nextjs-app/playwright.config.ts': 'playwright.config.ts'
+  'nextjs-app/tsconfig.json': 'tsconfig.json'
+  'nextjs-app/firebase.json': 'firebase.json'
+  'nextjs-app/firestore.rules': 'firestore.rules'
+  'nextjs-app/firestore.indexes.json': 'firestore.indexes.json'
+  'nextjs-app/storage.rules': 'storage.rules'
+  'nextjs-app/next.config.js': 'next.config.js'
+  'nextjs-app/tailwind.config.js': 'tailwind.config.js'
+  'nextjs-app/lint-staged.config.js': 'lint-staged.config.js'
+
+  # Scripts and documentation
+  'nextjs-app/deploy.js': 'scripts/deploy.js'
+  'nextjs-app/CLAUDE.md': 'CLAUDE.md'
+
+# Package.json configuration
 package:
-  type: module
+  type: 'module'
   scripts:
-    dev: next dev
-    build: next build
-    start: next start
-    typecheck: tsc --noEmit
-    lint: eslint --ext .ts,.tsx,.js,.jsx src
-    lint:fix: eslint --ext .ts,.tsx,.js,.jsx src --fix
-    format: prettier --write .
-    format:check: prettier --check .
-    test: jest
-    test:unit: jest
-    test:e2e: playwright test
-    test:coverage: jest --coverage
-    ci: npm run lint && npm run typecheck && npm run test
-    deploy: node scripts/deploy.js
-    prepare: husky install
-    lint-staged: lint-staged
+    dev: 'next dev'
+    build: 'next build'
+    start: 'next start'
+    typecheck: 'tsc --noEmit'
+    lint: 'eslint --ext .ts,.tsx,.js,.jsx src'
+    lint:fix: 'eslint --ext .ts,.tsx,.js,.jsx src --fix'
+    format: 'prettier --write .'
+    format:check: 'prettier --check .'
+    test: 'jest'
+    test:unit: 'jest'
+    test:e2e: 'playwright test'
+    test:coverage: 'jest --coverage'
+    ci: 'npm run lint && npm run typecheck && npm run test'
+    deploy: 'node scripts/deploy.js'
+    prepare: 'husky install'
+    lint-staged: 'lint-staged'
   dependencies:
-    next: latest
-    react: latest
-    react-dom: latest
-    firebase: latest
-    firebase-admin: latest
-    next-themes: latest
+    next: 'latest'
+    react: 'latest'
+    react-dom: 'latest'
+    firebase: 'latest'
+    firebase-admin: 'latest'
+    next-themes: 'latest'
   devDependencies:
-    '@playwright/test': latest
-    '@testing-library/jest-dom': latest
-    '@testing-library/react': latest
-    '@types/jest': latest
-    '@types/node': latest
-    '@types/react': latest
-    '@types/react-dom': latest
-    '@typescript-eslint/eslint-plugin': latest
-    '@typescript-eslint/parser': latest
-    autoprefixer: latest
-    eslint: latest
-    eslint-config-next: latest
-    eslint-config-prettier: latest
-    eslint-plugin-import: latest
-    eslint-plugin-prettier: latest
-    eslint-plugin-playwright: latest
-    eslint-plugin-react: latest
-    eslint-plugin-react-hooks: latest
-    firebase-tools: latest
-    husky: latest
-    jest: latest
-    jest-environment-jsdom: latest
-    lint-staged: latest
-    postcss: latest
-    prettier: latest
-    tailwindcss: latest
-    typescript: latest
+    '@playwright/test': 'latest'
+    '@testing-library/jest-dom': 'latest'
+    '@testing-library/react': 'latest'
+    '@types/jest': 'latest'
+    '@types/node': 'latest'
+    '@types/react': 'latest'
+    '@types/react-dom': 'latest'
+    '@typescript-eslint/eslint-plugin': 'latest'
+    '@typescript-eslint/parser': 'latest'
+    'autoprefixer': 'latest'
+    'eslint': 'latest'
+    'eslint-config-next': 'latest'
+    'eslint-config-prettier': 'latest'
+    'eslint-plugin-import': 'latest'
+    'eslint-plugin-prettier': 'latest'
+    'eslint-plugin-playwright': 'latest'
+    'eslint-plugin-react': 'latest'
+    'eslint-plugin-react-hooks': 'latest'
+    'firebase-tools': 'latest'
+    'husky': 'latest'
+    'jest': 'latest'
+    'jest-environment-jsdom': 'latest'
+    'lint-staged': 'latest'
+    'postcss': 'latest'
+    'prettier': 'latest'
+    'tailwindcss': 'latest'
+    'typescript': 'latest'
+
+# Commands to run
 commands:
   - npm init -y
   - npm i {{dependencies}}

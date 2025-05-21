@@ -1,5 +1,5 @@
 // Learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom';
+require('@testing-library/jest-dom');
 
 // Setup ThemeToggle test mocks
 jest.mock('next-themes', () => ({
@@ -56,4 +56,41 @@ jest.mock('firebase/storage', () => ({
   ref: jest.fn(),
   uploadBytes: jest.fn(),
   getDownloadURL: jest.fn(),
+}));
+
+// Mock Next.js server components for API routes
+global.Request = global.Request || class Request {
+  constructor(url, options) {
+    this.url = url;
+    this.options = options;
+  }
+  
+  async json() {
+    return {};
+  }
+};
+
+global.Response = global.Response || class Response {
+  constructor(body, options) {
+    this.body = body;
+    this.options = options;
+    this.headers = options?.headers || {};
+  }
+  
+  static json(data) {
+    return new Response(JSON.stringify(data), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+};
+
+// Mock NextResponse specifically
+jest.mock('next/server', () => ({
+  NextResponse: {
+    json: (data) => ({
+      json: () => Promise.resolve(data),
+      status: 200,
+      headers: new Map([['Content-Type', 'application/json']])
+    })
+  }
 }));

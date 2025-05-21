@@ -22,11 +22,7 @@ export function ThemeToggle() {
       className="p-2 bg-gray-200 dark:bg-gray-800 rounded-md transition-colors hover:bg-gray-300 dark:hover:bg-gray-700"
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? (
-        <span>🌞 Light Mode</span>
-      ) : (
-        <span>🌙 Dark Mode</span>
-      )}
+      {theme === 'dark' ? <span>🌞 Light Mode</span> : <span>🌙 Dark Mode</span>}
     </button>
   );
 }

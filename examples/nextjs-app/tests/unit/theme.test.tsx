@@ -16,10 +16,11 @@ describe('ThemeToggle', () => {
     });
 
     render(<ThemeToggle />);
-    
+
     // Check if the button is in the document
-    const button = screen.getByRole('button', { name: /dark mode/i });
+    const button = screen.getByRole('button', { name: /toggle theme/i });
     expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('🌙 Dark Mode');
   });
 
   it('toggles the theme when clicked', () => {
@@ -31,11 +32,11 @@ describe('ThemeToggle', () => {
     });
 
     render(<ThemeToggle />);
-    
+
     // Find and click the button
-    const button = screen.getByRole('button', { name: /dark mode/i });
+    const button = screen.getByRole('button', { name: /toggle theme/i });
     fireEvent.click(button);
-    
+
     // Check if setTheme was called with 'dark'
     expect(setThemeMock).toHaveBeenCalledWith('dark');
   });
@@ -48,9 +49,10 @@ describe('ThemeToggle', () => {
     });
 
     render(<ThemeToggle />);
-    
+
     // Check for light mode text
-    const button = screen.getByRole('button', { name: /light mode/i });
+    const button = screen.getByRole('button', { name: /toggle theme/i });
     expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('🌞 Light Mode');
   });
 });

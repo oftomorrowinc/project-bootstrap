@@ -13,7 +13,6 @@ directories:
   - tests/unit
   - tests/e2e
   - scripts
-  - .husky
 files:
   nextjs-app/layout.tsx: src/app/layout.tsx
   nextjs-app/page.tsx: src/app/page.tsx
@@ -29,7 +28,7 @@ files:
   nextjs-app/home.spec.ts: tests/e2e/home.spec.ts
   nextjs-app/jest.d.ts: tests/jest.d.ts
   nextjs-app/eslint.config.js: eslint.config.js
-  nextjs-app/babel.config.js: babel.config.js
+  nextjs-app/postcss.config.js: postcss.config.js
   nextjs-app/.firebaserc: .firebaserc
   nextjs-app/.gitignore: .gitignore
   nextjs-app/.prettierrc: .prettierrc
@@ -53,17 +52,16 @@ package:
     build: next build
     start: next start
     typecheck: tsc --noEmit
-    lint: eslint "src/**/*.{ts,tsx,js,jsx}"
-    lint:fix: eslint "src/**/*.{ts,tsx,js,jsx}" --fix
+    lint: eslint --ext .ts,.tsx,.js,.jsx src
+    lint:fix: eslint --ext .ts,.tsx,.js,.jsx src --fix
     format: prettier --write .
     format:check: prettier --check .
-    test: node --experimental-vm-modules node_modules/jest/bin/jest.js
-    test:unit: node --experimental-vm-modules node_modules/jest/bin/jest.js
+    test: jest
+    test:unit: jest
     test:e2e: playwright test
-    test:coverage: node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage
+    test:coverage: jest --coverage
     ci: npm run lint && npm run typecheck && npm run test
     deploy: node scripts/deploy.js
-    prepare: husky install
     lint-staged: lint-staged
   dependencies:
     next: latest
@@ -73,12 +71,6 @@ package:
     firebase-admin: latest
     next-themes: latest
   devDependencies:
-    '@babel/core': latest
-    '@babel/preset-env': latest
-    '@babel/preset-react': latest
-    '@babel/preset-typescript': latest
-    '@babel/plugin-transform-member-expression-literals': latest
-    '@eslint/js': latest
     '@playwright/test': latest
     '@testing-library/jest-dom': latest
     '@testing-library/react': latest
@@ -88,7 +80,14 @@ package:
     '@types/react-dom': latest
     '@typescript-eslint/eslint-plugin': latest
     '@typescript-eslint/parser': latest
+    '@babel/preset-env': latest
+    '@babel/preset-react': latest
+    '@babel/preset-typescript': latest
+    '@eslint/js': latest
+    '@next/eslint-plugin-next': latest
+    '@tailwindcss/postcss': latest
     autoprefixer: latest
+    babel-jest: latest
     eslint: latest
     eslint-config-next: latest
     eslint-config-prettier: latest
@@ -97,23 +96,16 @@ package:
     eslint-plugin-playwright: latest
     eslint-plugin-react: latest
     eslint-plugin-react-hooks: latest
-    globals: latest
     firebase-tools: latest
-    husky: latest
     jest: latest
     jest-environment-jsdom: latest
     lint-staged: latest
     postcss: latest
     prettier: latest
-    styled-jsx: latest
     tailwindcss: latest
-    tough-cookie: latest
     typescript: latest
 commands:
   - npm init -y
   - npm i {{dependencies}}
   - npm i -D {{devDependencies}}
   - npm run format
-  - npx tailwindcss init -p
-  - npm run prepare
-  - npx husky add .husky/pre-commit "npx lint-staged"

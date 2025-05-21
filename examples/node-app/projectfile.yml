@@ -1,0 +1,103 @@
+name: node-app
+description: Node.js application with Express, Pug, HTMX, TypeScript, Firebase, and testing
+
+# Directories to create
+directories:
+  - dist
+  - src/controllers
+  - src/models
+  - src/middleware
+  - src/utils
+  - src/views
+  - src/public/css
+  - src/public/js
+  - src/public/images
+  - tests/unit
+  - tests/e2e
+  - scripts
+
+# Files to copy from files directory to project
+files:
+  # Core app files
+  'node-app/index.ts': 'src/index.ts'
+  'node-app/app.ts': 'src/app.ts'
+  'node-app/layout.pug': 'src/views/layout.pug'
+  'node-app/index.pug': 'src/views/index.pug'
+  'node-app/styles.css': 'src/public/css/styles.css'
+  'node-app/main.js': 'src/public/js/main.js'
+
+  # Test files
+  'node-app/app.test.ts': 'tests/unit/app.test.ts'
+  'node-app/home.spec.ts': 'tests/e2e/home.spec.ts'
+
+  # Configuration files
+  'node-app/.eslintrc.js': '.eslintrc.js'
+  'node-app/.firebaserc': '.firebaserc'
+  'node-app/.gitignore': '.gitignore'
+  'node-app/.prettierrc': '.prettierrc'
+  'node-app/jest.config.js': 'jest.config.js'
+  'node-app/playwright.config.ts': 'playwright.config.ts'
+  'node-app/tsconfig.json': 'tsconfig.json'
+  'node-app/firebase.json': 'firebase.json'
+
+  # Scripts and documentation
+  'node-app/curl.js': 'scripts/curl.js'
+  'node-app/CLAUDE.md': 'CLAUDE.md'
+
+# Package.json configuration (separate from files)
+package:
+  type: 'module'
+  main: 'dist/index.js'
+  scripts:
+    start: 'node dist/index.js'
+    dev: 'nodemon --exec tsx src/index.ts'
+    build: 'tsc'
+    typecheck: 'tsc --noEmit'
+    lint: 'eslint . --ext .ts'
+    format: 'prettier --write .'
+    test: 'node --experimental-vm-modules node_modules/jest/bin/jest.js'
+    test:e2e: 'playwright test'
+    emulator: 'firebase emulators:start'
+    curl: 'node scripts/curl.js'
+  dependencies:
+    cors: 'latest'
+    compression: 'latest'
+    dotenv: 'latest'
+    express: 'latest'
+    firebase: 'latest'
+    firebase-admin: 'latest'
+    helmet: 'latest'
+    htmx.org: 'latest'
+    pug: 'latest'
+  devDependencies:
+    '@playwright/test': 'latest'
+    '@types/compression': 'latest'
+    '@types/cors': 'latest'
+    '@types/express': 'latest'
+    '@types/jest': 'latest'
+    '@types/node': 'latest'
+    '@types/supertest': 'latest'
+    '@typescript-eslint/eslint-plugin': 'latest'
+    '@typescript-eslint/parser': 'latest'
+    axios: 'latest'
+    commander: 'latest'
+    eslint: 'latest'
+    eslint-config-prettier: 'latest'
+    eslint-plugin-prettier: 'latest'
+    eslint-plugin-playwright: 'latest'
+    firebase-tools: 'latest'
+    jest: 'latest'
+    nodemon: 'latest'
+    prettier: 'latest'
+    supertest: 'latest'
+    ts-jest: 'latest'
+    tsx: 'latest'
+    typescript: 'latest'
+
+# Commands to run
+commands:
+  - npm init -y
+  - npm i {{dependencies}}
+  - npm i -D {{devDependencies}}
+  - chmod +x scripts/curl.js
+  - npm run format
