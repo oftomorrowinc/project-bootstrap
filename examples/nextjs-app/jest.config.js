@@ -17,25 +17,32 @@ const config = {
   testMatch: ['<rootDir>/**/*.test.{ts,tsx}'],
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', {
-      presets: [
-        ['@babel/preset-env', {
-          targets: { node: 'current' },
-          modules: 'commonjs'
-        }],
-        ['@babel/preset-react', {
-          runtime: 'automatic'
-        }],
-        '@babel/preset-typescript'
-      ]
-    }]
+    '^.+\\.(js|jsx|ts|tsx)$': [
+      'babel-jest',
+      {
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: { node: 'current' },
+              modules: 'commonjs',
+            },
+          ],
+          [
+            '@babel/preset-react',
+            {
+              runtime: 'automatic',
+            },
+          ],
+          '@babel/preset-typescript',
+        ],
+      },
+    ],
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!(.*\\.mjs$))'
-  ],
+  transformIgnorePatterns: ['node_modules/(?!(.*\\.mjs$))'],
   testEnvironmentOptions: {
     customExportConditions: [''],
-  }
+  },
 };
 
 export default config;

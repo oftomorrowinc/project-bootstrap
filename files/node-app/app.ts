@@ -49,9 +49,9 @@ app.get('/api/time', (req, res) => {
 });
 
 // Error handling
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err.stack);
-  res.status(500).render('error', { message: 'Something broke!' });
+  res.status(500).json({ error: 'Something broke!' });
 });
 
 export default app;

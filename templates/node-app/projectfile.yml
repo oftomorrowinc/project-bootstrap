@@ -31,7 +31,7 @@ files:
   'node-app/home.spec.ts': 'tests/e2e/home.spec.ts'
   
   # Configuration files
-  'node-app/.eslintrc.js': '.eslintrc.js'
+  'node-app/eslint.config.js': 'eslint.config.js'
   'node-app/.firebaserc': '.firebaserc'
   'node-app/.gitignore': '.gitignore'
   'node-app/.prettierrc': '.prettierrc'
@@ -79,6 +79,7 @@ package:
     "@types/supertest": "latest"
     "@typescript-eslint/eslint-plugin": "latest"
     "@typescript-eslint/parser": "latest"
+    "@eslint/js": "latest"
     axios: "latest"
     commander: "latest"
     eslint: "latest"

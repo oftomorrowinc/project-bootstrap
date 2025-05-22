@@ -9,8 +9,8 @@
   },
   "scripts": {
     "release": "git add . && git commit -m \"Release v$npm_package_version\" && git tag -a v$npm_package_version -m \"Release v$npm_package_version\" && git push && git push --tags",
-    "reset-node-app": "yes | rm -rf examples/node-app/* && mkdir -p examples/node-app && cp templates/node-app/projectfile.yml examples/node-app/ && cd examples/node-app && yes | npx github:oftomorrowinc/project-bootstrap run",
-    "reset-nextjs-app": "yes | rm -rf examples/nextjs-app/* && mkdir -p examples/nextjs-app && cp templates/nextjs-app/projectfile.yml examples/nextjs-app/ && cd examples/nextjs-app && yes | npx github:oftomorrowinc/project-bootstrap run",
+    "reset-node-app": "yes | rm -rf examples/node-app/* && mkdir -p examples/node-app && cp templates/node-app/projectfile.yml examples/node-app/ && cd examples/node-app && yes | node ../../src/bootstrap.js run",
+    "reset-nextjs-app": "yes | rm -rf examples/nextjs-app/* && mkdir -p examples/nextjs-app && cp templates/nextjs-app/projectfile.yml examples/nextjs-app/ && cd examples/nextjs-app && yes | node ../../src/bootstrap.js run",
     "test": "cd examples/node-app && npm i && npm run test && cd ../nextjs-app && npm i && npm run test",
     "lint": "cd examples/node-app && npm i && npm run lint && cd ../nextjs-app && npm i && npm run lint",
     "format": "cd examples/node-app && npm i && npm run format && cd ../nextjs-app && npm i && npm run format",

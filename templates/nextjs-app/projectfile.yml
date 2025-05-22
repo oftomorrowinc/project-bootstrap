@@ -13,7 +13,6 @@ directories:
   - tests/unit
   - tests/e2e
   - scripts
-  - .husky
 
 # Files to copy from files directory to project
 files:
@@ -35,6 +34,8 @@ files:
   
   # Configuration files
   'nextjs-app/.eslintrc.json': '.eslintrc.json'
+  'nextjs-app/eslint.config.js': 'eslint.config.js'
+  'nextjs-app/postcss.config.js': 'postcss.config.js'
   'nextjs-app/.firebaserc': '.firebaserc'
   'nextjs-app/.gitignore': '.gitignore'
   'nextjs-app/.prettierrc': '.prettierrc'
@@ -72,7 +73,6 @@ package:
     test:coverage: "jest --coverage"
     ci: "npm run lint && npm run typecheck && npm run test"
     deploy: "node scripts/deploy.js"
-    prepare: "husky install"
     lint-staged: "lint-staged"
   dependencies:
     next: "latest"
@@ -91,7 +91,14 @@ package:
     "@types/react-dom": "latest"
     "@typescript-eslint/eslint-plugin": "latest"
     "@typescript-eslint/parser": "latest"
+    "@babel/preset-env": "latest"
+    "@babel/preset-react": "latest"
+    "@babel/preset-typescript": "latest"
+    "@eslint/js": "latest"
+    "@next/eslint-plugin-next": "latest"
+    "@tailwindcss/postcss": "latest"
     "autoprefixer": "latest"
+    "babel-jest": "latest"
     "eslint": "latest"
     "eslint-config-next": "latest"
     "eslint-config-prettier": "latest"
@@ -101,7 +108,6 @@ package:
     "eslint-plugin-react": "latest"
     "eslint-plugin-react-hooks": "latest"
     "firebase-tools": "latest"
-    "husky": "latest"
     "jest": "latest"
     "jest-environment-jsdom": "latest"
     "lint-staged": "latest"
@@ -116,6 +122,3 @@ commands:
   - npm i {{dependencies}}
   - npm i -D {{devDependencies}}
   - npm run format
-  - npx tailwindcss init -p
-  - npm run prepare
-  - npx husky add .husky/pre-commit "npx lint-staged"

@@ -59,38 +59,42 @@ jest.mock('firebase/storage', () => ({
 }));
 
 // Mock Next.js server components for API routes
-global.Request = global.Request || class Request {
-  constructor(url, options) {
-    this.url = url;
-    this.options = options;
-  }
-  
-  async json() {
-    return {};
-  }
-};
+global.Request =
+  global.Request ||
+  class Request {
+    constructor(url, options) {
+      this.url = url;
+      this.options = options;
+    }
 
-global.Response = global.Response || class Response {
-  constructor(body, options) {
-    this.body = body;
-    this.options = options;
-    this.headers = options?.headers || {};
-  }
-  
-  static json(data) {
-    return new Response(JSON.stringify(data), {
-      headers: { 'Content-Type': 'application/json' }
-    });
-  }
-};
+    async json() {
+      return {};
+    }
+  };
+
+global.Response =
+  global.Response ||
+  class Response {
+    constructor(body, options) {
+      this.body = body;
+      this.options = options;
+      this.headers = options?.headers || {};
+    }
+
+    static json(data) {
+      return new Response(JSON.stringify(data), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+  };
 
 // Mock NextResponse specifically
 jest.mock('next/server', () => ({
   NextResponse: {
-    json: (data) => ({
+    json: data => ({
       json: () => Promise.resolve(data),
       status: 200,
-      headers: new Map([['Content-Type', 'application/json']])
-    })
-  }
+      headers: new Map([['Content-Type', 'application/json']]),
+    }),
+  },
 }));
