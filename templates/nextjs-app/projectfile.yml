@@ -47,7 +47,7 @@ files:
   'nextjs-app/firestore.rules': 'firestore.rules'
   'nextjs-app/firestore.indexes.json': 'firestore.indexes.json'
   'nextjs-app/storage.rules': 'storage.rules'
-  'nextjs-app/next.config.js': 'next.config.js'
+  'nextjs-app/next.config.mjs': 'next.config.mjs'
   'nextjs-app/tailwind.config.js': 'tailwind.config.js'
   'nextjs-app/lint-staged.config.js': 'lint-staged.config.js'
   
