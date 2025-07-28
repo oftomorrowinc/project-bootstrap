@@ -28,7 +28,13 @@ app.use(
   }),
 );
 app.use(compression());
-app.use(cors());
+// CORS enabled for development - restrict origins in production
+app.use(
+  cors({
+    origin: process.env.NODE_ENV === 'production' ? false : true,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
