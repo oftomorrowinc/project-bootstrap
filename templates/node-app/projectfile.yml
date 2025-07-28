@@ -86,6 +86,7 @@ package:
     eslint-config-prettier: "latest"
     eslint-plugin-prettier: "latest"
     eslint-plugin-playwright: "latest"
+    eslint-plugin-sonarjs: "latest"
     firebase-tools: "latest"
     jest: "latest"
     nodemon: "latest"

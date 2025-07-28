@@ -3,10 +3,16 @@ description: Next.js application with TypeScript, Firebase App Hosting, Dark The
 
 # Directories to create
 directories:
+  - .claude
+  - .claude/agents
+  - .claude/commands
+  - .claude/templates
+  - logs
   - public
   - src/app
   - src/app/api/hello
   - src/components
+  - src/components/ui
   - src/lib
   - src/styles
   - src/utils
@@ -24,7 +30,21 @@ files:
   'nextjs-app/ThemeToggle.tsx': 'src/components/ThemeToggle.tsx'
   'nextjs-app/ThemeProvider.tsx': 'src/components/ThemeProvider.tsx'
   'nextjs-app/firebase.ts': 'src/lib/firebase.ts'
+  'nextjs-app/utils.ts': 'src/lib/utils.ts'
   'nextjs-app/favicon.ico': 'public/favicon.ico'
+
+  # Claude Files
+  '.claude/settings.local.json': '.claude/settings.local.json'
+  '.claude/agents/backend-agent.md': '.claude/agents/backend-agent.md'
+  '.claude/agents/frontend-agent.md': '.claude/agents/frontend-agent.md'
+  '.claude/agents/jest-agent.md': '.claude/agents/jest-agent.md'
+  '.claude/agents/manual-testing-agent.md': '.claude/agents/manual-testing-agent.md'
+  '.claude/agents/planning-agent.md': '.claude/agents/planning-agent.md'
+  '.claude/agents/playwright-agent.md': '.claude/agents/playwright-agent.md'
+  '.claude/commands/create-spec.md': '.claude/commands/create-spec.md'
+  '.claude/commands/implement-spec.md': '.claude/commands/implement-spec.md'
+  '.claude/commands/quick-implement.md': '.claude/commands/quick-implement.md'
+  '.claude/templates/spec-template.md': '.claude/templates/spec-template.md'
 
   # Test files
   'nextjs-app/theme.test.tsx': 'tests/unit/theme.test.tsx'
@@ -50,8 +70,10 @@ files:
   'nextjs-app/next.config.js': 'next.config.js'
   'nextjs-app/tailwind.config.js': 'tailwind.config.js'
   'nextjs-app/lint-staged.config.js': 'lint-staged.config.js'
+  'nextjs-app/components.json': 'components.json'
 
   # Scripts and documentation
+  'nextjs-app/dev.sh': 'scripts/dev.sh'
   'nextjs-app/deploy.js': 'scripts/deploy.js'
   'nextjs-app/CLAUDE.md': 'CLAUDE.md'
 
@@ -59,7 +81,7 @@ files:
 package:
   type: 'module'
   scripts:
-    dev: 'next dev'
+    dev: 'bash scripts/dev.sh'
     build: 'next build'
     start: 'next start'
     typecheck: 'tsc --noEmit'
@@ -70,8 +92,9 @@ package:
     test: 'jest'
     test:unit: 'jest'
     test:e2e: 'playwright test'
+    test:e2e:all: 'CI=true playwright test'
     test:coverage: 'jest --coverage'
-    ci: 'npm run lint && npm run typecheck && npm run test'
+    ci: 'npm run lint && npm run typecheck && npm run test && npm run test:e2e:all'
     deploy: 'node scripts/deploy.js'
     lint-staged: 'lint-staged'
   dependencies:
@@ -81,6 +104,10 @@ package:
     firebase: 'latest'
     firebase-admin: 'latest'
     next-themes: 'latest'
+    '@radix-ui/react-slot': 'latest'
+    'class-variance-authority': 'latest'
+    'clsx': 'latest'
+    'tailwind-merge': 'latest'
   devDependencies:
     '@playwright/test': 'latest'
     '@testing-library/jest-dom': 'latest'
@@ -107,6 +134,7 @@ package:
     'eslint-plugin-playwright': 'latest'
     'eslint-plugin-react': 'latest'
     'eslint-plugin-react-hooks': 'latest'
+    'eslint-plugin-sonarjs': 'latest'
     'firebase-tools': 'latest'
     'jest': 'latest'
     'jest-environment-jsdom': 'latest'
@@ -114,11 +142,15 @@ package:
     'postcss': 'latest'
     'prettier': 'latest'
     'tailwindcss': 'latest'
+    'tailwindcss-animate': 'latest'
     'typescript': 'latest'
+    'shadcn': 'latest'
 
 # Commands to run
 commands:
   - npm init -y
   - npm i {{dependencies}}
   - npm i -D {{devDependencies}}
+  - npx shadcn@latest init --yes --force --base-color slate
+  - npx shadcn@latest add button
   - npm run format

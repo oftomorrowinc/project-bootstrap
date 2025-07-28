@@ -57,5 +57,14 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    // Safely require tailwindcss-animate, fallback to empty if not installed yet
+    (() => {
+      try {
+        return require("tailwindcss-animate");
+      } catch {
+        return () => {};
+      }
+    })()
+  ],
 };

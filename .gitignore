@@ -15,4 +15,3 @@ playwright-report/
 /playwright/.cache/
 .vscode/*
 !.vscode/extensions.json
-**/.claude/settings.local.json

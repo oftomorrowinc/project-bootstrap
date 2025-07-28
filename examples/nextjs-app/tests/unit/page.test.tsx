@@ -2,8 +2,12 @@ import { render, screen } from '@testing-library/react';
 import Home from '@/app/page';
 
 // Mock the components that Home depends on
-jest.mock('@/components/ThemeToggle', () => ({
-  ThemeToggle: () => <div data-testid="theme-toggle-mock">Theme Toggle</div>,
+jest.mock('@/components/ui/button', () => ({
+  Button: ({ children, ...props }: any) => (
+    <button data-testid="shadcn-button-mock" {...props}>
+      {children}
+    </button>
+  ),
 }));
 
 jest.mock('next/navigation', () => ({
@@ -23,12 +27,13 @@ describe('Home Page', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it('renders the theme toggle section', () => {
+  it('renders the ShadCN button section', () => {
     render(<Home />);
 
-    const toggleSection = screen.getByText(/Toggle between light and dark mode/i);
-    expect(toggleSection).toBeInTheDocument();
-    expect(screen.getByTestId('theme-toggle-mock')).toBeInTheDocument();
+    const buttonSection = screen.getByText(/Try the ShadCN UI button/i);
+    expect(buttonSection).toBeInTheDocument();
+    expect(screen.getByTestId('shadcn-button-mock')).toBeInTheDocument();
+    expect(screen.getByText('Click Me!')).toBeInTheDocument();
   });
 
   it('renders documentation links', () => {

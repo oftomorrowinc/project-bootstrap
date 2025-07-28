@@ -6,6 +6,7 @@ import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import prettierPlugin from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import sonarjsPlugin from 'eslint-plugin-sonarjs';
 
 export default [
   js.configs.recommended,
@@ -40,6 +41,7 @@ export default [
       'react-hooks': reactHooksPlugin,
       '@typescript-eslint': typescriptPlugin,
       prettier: prettierPlugin,
+      sonarjs: sonarjsPlugin,
     },
     rules: {
       ...nextPlugin.configs.recommended.rules,
@@ -47,6 +49,7 @@ export default [
       ...reactHooksPlugin.configs.recommended.rules,
       ...typescriptPlugin.configs.recommended.rules,
       ...prettierConfig.rules,
+      ...sonarjsPlugin.configs.recommended.rules,
       'prettier/prettier': 'error',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',

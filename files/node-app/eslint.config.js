@@ -3,6 +3,7 @@ import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
 import playwright from 'eslint-plugin-playwright';
+import sonarjs from 'eslint-plugin-sonarjs';
 
 export default [
   js.configs.recommended,
@@ -34,9 +35,11 @@ export default [
     plugins: {
       '@typescript-eslint': typescriptEslint,
       prettier,
+      sonarjs,
     },
     rules: {
       ...typescriptEslint.configs.recommended.rules,
+      ...sonarjs.configs.recommended.rules,
       'prettier/prettier': 'error',
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',

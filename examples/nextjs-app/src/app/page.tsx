@@ -1,6 +1,11 @@
-import { ThemeToggle } from '@/components/ThemeToggle';
+'use client';
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
+  const [count, setCount] = useState(0);
+
   return (
     <div className="flex flex-col items-center justify-center gap-8 py-12">
       <h1 className="text-4xl font-bold">NextJS App with Firebase</h1>
@@ -17,8 +22,10 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center mt-8">
-        <p className="mb-2">Toggle between light and dark mode:</p>
-        <ThemeToggle />
+        <p className="mb-2">Try the ShadCN UI button:</p>
+        <Button variant="default" size="default" onClick={() => setCount(count + 1)}>
+          {count === 0 ? 'Click Me!' : `Clicked ${count} time${count === 1 ? '' : 's'}`}
+        </Button>
       </div>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">

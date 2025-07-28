@@ -130,10 +130,9 @@ npm run curl --help
 ## Publishing a Release
 
 1. Increment the version number in package.json
-2. Update this Readme with correct version
-3. Run `npm run release` to create a tag on Github
-4. Visit https://github.com/oftomorrowinc/project-bootstrap/releases/new
-5. Choose your new tag, enter a title & description of the updates and click PUblish release
+2. Run `npm run release` to create a tag on Github
+3. Visit https://github.com/oftomorrowinc/project-bootstrap/releases/new
+4. Choose your new tag, enter a title & description of the updates and click PUblish release
 
 ## License
 
