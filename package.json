@@ -1,6 +1,6 @@
 {
   "name": "project-bootstrap",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Dockerfile-like project bootstrapping tool",
   "type": "module",
   "main": "src/bootstrap.js",

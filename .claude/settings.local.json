@@ -42,7 +42,8 @@
       "Bash(git rm:*)",
       "Bash(npm --prefix /Users/toddsampson/srv/project-bootstrap run reset-node-app)",
       "Bash(npm --prefix /Users/toddsampson/srv/project-bootstrap run reset-nextjs-app)",
-      "Bash(npm pack:*)"
+      "Bash(npm pack:*)",
+      "Bash(npx playwright test:*)"
     ],
     "deny": [
       "Bash(npm run dev:*)",
