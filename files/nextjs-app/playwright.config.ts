@@ -15,7 +15,8 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
   },
-  projects: [
+  projects: process.env.CI ? [
+    // CI: Run all major browsers
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
@@ -35,6 +36,12 @@ export default defineConfig({
     {
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
+    },
+  ] : [
+    // Development: Chromium only for faster testing
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
   ],
   webServer: {

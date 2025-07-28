@@ -93,8 +93,9 @@ package:
     test: "jest"
     test:unit: "jest"
     test:e2e: "playwright test"
+    test:e2e:all: "CI=true playwright test"
     test:coverage: "jest --coverage"
-    ci: "npm run lint && npm run typecheck && npm run test"
+    ci: "npm run lint && npm run typecheck && npm run test && npm run test:e2e:all"
     deploy: "node scripts/deploy.js"
     lint-staged: "lint-staged"
   dependencies:
