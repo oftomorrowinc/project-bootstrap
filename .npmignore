@@ -1,0 +1,12 @@
+# Include everything by default, only exclude specific paths
+node_modules/
+examples/*/node_modules/
+*.log
+.DS_Store
+
+# Force include gitignore files
+!files/**/.gitignore
+!.gitignore
+
+# Force include components.json files  
+!files/**/components.json

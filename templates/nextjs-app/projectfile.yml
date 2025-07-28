@@ -59,7 +59,7 @@ files:
   'nextjs-app/eslint.config.js': 'eslint.config.js'
   'nextjs-app/postcss.config.js': 'postcss.config.js'
   'nextjs-app/.firebaserc': '.firebaserc'
-  'nextjs-app/.gitignore': '.gitignore'
+  'nextjs-app/gitignore': '.gitignore'
   'nextjs-app/.prettierrc': '.prettierrc'
   'nextjs-app/jest.config.js': 'jest.config.js'
   'nextjs-app/jest.setup.js': 'jest.setup.js'
