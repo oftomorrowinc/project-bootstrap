@@ -34,7 +34,9 @@ files:
   'nextjs-app/favicon.ico': 'public/favicon.ico'
 
   # Claude Files
+  '.claude/team-training-guide.md': '.claude/team-training-guide.md'
   '.claude/settings.local.json': '.claude/settings.local.json'
+  '.claude/README.md': '.claude/README.md'
   '.claude/agents/backend-agent.md': '.claude/agents/backend-agent.md'
   '.claude/agents/frontend-agent.md': '.claude/agents/frontend-agent.md'
   '.claude/agents/jest-agent.md': '.claude/agents/jest-agent.md'

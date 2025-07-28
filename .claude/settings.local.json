@@ -1,0 +1,52 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run test:*)",
+      "Bash(chmod:*)",
+      "Bash(node:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(ls:*)",
+      "Bash(for file in app.test.ts app.ts CLAUDE.md curl.js firebase.json home.spec.ts index.pug index.ts jest.config.js layout.pug main.js playwright.config.ts styles.css tsconfig.json)",
+      "Bash(do)",
+      "Bash(cp:*)",
+      "Bash(done)",
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(mv:*)",
+      "Bash(cat:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(git -C /Users/toddsampson/srv/project-bootstrap ls-files -- \"*/.eslintrc.js\" \"*/.firebaserc\" \"*/.gitignore\" \"*/.prettierrc\")",
+      "Bash(git checkout:*)",
+      "Bash(npm test)",
+      "Bash(npm run format:*)",
+      "Bash(npm run lint)",
+      "Bash(npm install:*)",
+      "Bash(tsc:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run ci:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx jest:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm ls:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npm pkg set:*)",
+      "Bash(eslint:*)",
+      "WebFetch(domain:tailwindcss.com)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run reset-nextjs-app:*)",
+      "Bash(npm run reset-node-app:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git rm:*)",
+      "Bash(npm --prefix /Users/toddsampson/srv/project-bootstrap run reset-node-app)",
+      "Bash(npm --prefix /Users/toddsampson/srv/project-bootstrap run reset-nextjs-app)"
+    ],
+    "deny": [
+      "Bash(npm run dev:*)",
+      "Bash(npm start)"
+    ]
+  },
+  "enableAllProjectMcpServers": false
+}

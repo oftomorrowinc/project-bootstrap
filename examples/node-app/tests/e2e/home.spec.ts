@@ -20,7 +20,7 @@ test('time API endpoint is called via HTMX', async ({ page }) => {
 
   // After HTMX call, should contain server response
   await page.waitForResponse('/api/time');
-  await page.waitForSelector(':has-text("Server time retrieved")');
+  await expect(page.locator(':has-text("Server time retrieved")')).toBeVisible();
 
   // Verify content has been updated
   const content = await page.textContent('div[hx-get="/api/time"]');

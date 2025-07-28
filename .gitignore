@@ -15,3 +15,7 @@ playwright-report/
 /playwright/.cache/
 .vscode/*
 !.vscode/extensions.json
+
+# Include Claude settings files
+!.claude/settings.local.json
+!files/.claude/settings.local.json

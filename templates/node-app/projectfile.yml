@@ -3,6 +3,10 @@ description: Node.js application with Express, Pug, HTMX, TypeScript, Firebase, 
 
 # Directories to create
 directories:
+  - .claude
+  - .claude/agents
+  - .claude/commands
+  - .claude/templates
   - dist
   - src/controllers
   - src/models
@@ -29,6 +33,21 @@ files:
   # Test files
   'node-app/app.test.ts': 'tests/unit/app.test.ts'
   'node-app/home.spec.ts': 'tests/e2e/home.spec.ts'
+  
+  # Claude Files
+  '.claude/team-training-guide.md': '.claude/team-training-guide.md'
+  '.claude/settings.local.json': '.claude/settings.local.json'
+  '.claude/README.md': '.claude/README.md'
+  '.claude/agents/backend-agent.md': '.claude/agents/backend-agent.md'
+  '.claude/agents/frontend-agent.md': '.claude/agents/frontend-agent.md'
+  '.claude/agents/jest-agent.md': '.claude/agents/jest-agent.md'
+  '.claude/agents/manual-testing-agent.md': '.claude/agents/manual-testing-agent.md'
+  '.claude/agents/planning-agent.md': '.claude/agents/planning-agent.md'
+  '.claude/agents/playwright-agent.md': '.claude/agents/playwright-agent.md'
+  '.claude/commands/create-spec.md': '.claude/commands/create-spec.md'
+  '.claude/commands/implement-spec.md': '.claude/commands/implement-spec.md'
+  '.claude/commands/quick-implement.md': '.claude/commands/quick-implement.md'
+  '.claude/templates/spec-template.md': '.claude/templates/spec-template.md'
   
   # Configuration files
   'node-app/eslint.config.js': 'eslint.config.js'
